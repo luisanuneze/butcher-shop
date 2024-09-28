@@ -35,9 +35,7 @@ class OrderResource extends Resource
                     ->numeric()
                     ->default(0.00),
                 Forms\Components\TextInput::make('discount_currency')
-                    ->required()
-                    ->numeric()
-                    ->default(0.00),
+                    ->required(),
                 Forms\Components\TextInput::make('grand_total')
                     ->required()
                     ->numeric()
@@ -58,7 +56,6 @@ class OrderResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('discount_currency')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('grand_total')
                     ->numeric()

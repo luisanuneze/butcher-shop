@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('payment_method', ['cash', 'bank_transfer'])->default('cash');
             $table->enum('status', ['paid', 'on_hold', 'rejected', 'draft', 'cancelled', 'refunded', 'created']);
             $table->decimal('discount_amount')->default(0);
-            $table->decimal('discount_currency')->default(0);
+            $table->string('discount_currency');
             $table->decimal('grand_total')->default(0);
             $table->timestamps();
         });
