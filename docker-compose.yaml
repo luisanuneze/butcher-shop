@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: butcher_shop
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_app
+    restart: always
+    working_dir: /var/www/html
+    volumes:
+      - app_code:/var/www/html  # Use the named volume
+    ports:
+      - "8000:8000"  # Change to port 8000
+    depends_on:
+      - db  # Ensure the DB is up before starting the app
+    networks:
+      - app_network
+
+volumes:
+  app_code:
+  db_data:
+
+networks:
+  app_network:
+    driver: bridge
