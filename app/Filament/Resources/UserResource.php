@@ -27,8 +27,11 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\Toggle::make('isActive')
+                    ->maxLength(55),
+                Forms\Components\Toggle::make('isActive'),
+                Forms\Components\CheckboxList::make('roles')
+                    ->relationship('roles', 'name')
+                    ->searchable()
             ]);
     }
 
